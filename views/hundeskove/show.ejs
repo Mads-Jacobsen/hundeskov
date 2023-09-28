@@ -1,0 +1,84 @@
+<% layout('layout/boilerplate') %>
+<link rel="stylesheet" href="/css/starability.css">
+<a href="/hundeskove">Tilbage til alle hundeskove</a>
+<div class="container">
+  <section class="section">
+    <div id='show-map' class="mb-3"></div>
+      <h1 class="title is-1"><%= hundeskov.titel %></h1>
+      <h2 class="subtitle"><%= hundeskov.beskrivelse %></h2>
+      <div class="content">
+        Placering: <a href="https://www.google.dk/maps/place/<%= hundeskov.lokation %>"><%= hundeskov.lokation %></a>
+          <div class="columns mt-2">
+            <% hundeskov.billede.forEach((img, i) =>  {%>
+            <div class="column is-1">
+              <a href="<%= img.url %>"><img src="<%= img.url %>" class="image is-128x128" crossorigin="anonymous"></a>
+            </div>
+            <% }) %>
+          </div>
+        <% if(currentUser && hundeskov.author.equals(currentUser._id)) {%>
+          <div class="buttons">
+              <a href="/hundeskove/<%= hundeskov._id %>/edit" class="button is-info">Redigere</a>
+              <form action="/hundeskove/<%= hundeskov._id %>?_method=DELETE" method="POST">
+              <button class="button is-danger">SLET</button>
+              </form>
+          </div>
+          <% } %>
+      </div>
+      <h2 class="title is-4">Lav en anmeldelse</h2>
+      <h3 class="subtitle is-5">Rating</h3>
+      <% if(currentUser) {%>
+        <form action="/hundeskove/<%= hundeskov._id %>/reviews" method="POST" class="mb-3 needs-validation" novalidate>
+          <div class="field">
+            <fieldset class="starability-basic">
+              <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
+              <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+              <label for="first-rate1" title="Terrible">1 star</label>
+              <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+              <label for="first-rate2" title="Not good">2 stars</label>
+              <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+              <label for="first-rate3" title="Average">3 stars</label>
+              <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+              <label for="first-rate4" title="Very good">4 stars</label>
+              <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+              <label for="first-rate5" title="Amazing">5 stars</label>
+            </fieldset>
+          </div>
+          <div class="field">
+            <label for="anmeldelse" class="label">Anmeldelse</label>
+            <div class="control">
+              <textarea class="textarea" name="review[anmeldelse]" id="anmeldelse" cols="30" rows="5" required></textarea>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <button class="button is-primary">Send anmeldelse</button>
+            </div>
+          </div>
+        </form>
+        <% } %>
+        <div class="columns mt-2">
+          <% for(let review of hundeskov.reviews) {%>
+            <div class="column is-3">
+                <div class="box has-text-center">
+                  <p class="starability-result mb-1" data-rating="<%= review.rating %>"></p>
+                  <p class="is-italic mb-2"><%= review.anmeldelse %></p>
+                  <% if(currentUser && review.author.equals(currentUser._id)) {%>
+                    <form action="/hundeskove/<%= hundeskov._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                      <button class="button is-danger">Slet</button>
+                  </form>
+                  <% } %>
+                </div>
+              </div>
+            <% } %>
+        </div>
+  </section>  
+</div>
+
+<!-- Hvis man kun inkludere map.js alene vil det ikke fungere pga. EJS metode at loade på.
+  Derfor er det nødvendigt define mapToken inden så den allerede har hentet Token ind inden den loades til sidst -->
+  <script>
+    const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+    const hundeskov = <%- JSON.stringify(hundeskov) %>
+  </script>
+<script src="/js/map.js"></script>
+

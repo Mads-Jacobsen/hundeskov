@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+
+
+  <% if(success && success.length) { %>
+    <div class="container is-max-desktop">
+      <div class="notification is-primary">
+        <button class="delete"></button>
+        <strong><%= success %></strong>
+      </div>
+    </div>
+<% } %>
+
+  <% if(error && error.length) { %>
+    <div class="container is-max-desktop">
+      <div class="notification is-danger">
+        <button class="delete"></button>
+        <strong><%= error %></strong>
+      </div>
+    </div>
+    <% } %>

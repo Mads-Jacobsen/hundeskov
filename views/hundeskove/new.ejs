@@ -1,0 +1,49 @@
+<% layout('layout/boilerplate') %>
+<div class="container">
+  <h1 class="is-size-2 has-text-centered">Tilføj ny hundeskov</h1>
+  <form action="/hundeskove" method="POST" enctype="multipart/form-data" class="mb-4">
+    <div class="field">
+      <label for="titel" class="label">Titel</label>
+      <div class="control">
+        <input type="text" class="input" id="titel" name="hundeskov[titel]" required>
+        <p class="help is-danger" id="alertTitel"></p>
+      </div>
+    </div>
+    <div class="field">
+      <label for="lokation" class="label">Lokation</label>
+      <div class="control">
+        <input type="text" class="input" id="lokation" name="hundeskov[lokation]" required>
+        <p class="help is-danger" id="alertLokation"></p>
+      </div>
+    </div>
+    <div class="field">
+      <label for="beskrivelse" class="label">Beskrivelse</label>
+      <div class="control">
+        <textarea class="textarea" id="beskrivelse" name="hundeskov[beskrivelse]" rows="3" required></textarea>
+        <p class="help is-danger" id="alertBeskrivelse"></p>
+      </div>
+    </div>
+    <div class="field">
+      <div class="file is-boxed mb-3 has-name" id="billede-uploader">
+        <label class="file-label" for="billede">
+          <input class="file-input" type="file" id="billede" name="billede" multiple>
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+              Vælg billeder
+            </span>
+          </span>
+          <span class="file-name">
+            Ingen fil(er) valgt
+          </span>
+        </label>
+      </div>
+    </div>
+    <button class="button is-success" id="submit-button">Tilføj ny</button>
+  </form>
+    <a href="/hundeskove">Gå tilbage</a>
+</div>
+
+<script src="/js/formValidation.js"></script>

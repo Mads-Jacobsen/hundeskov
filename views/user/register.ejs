@@ -1,0 +1,33 @@
+<% layout('layout/boilerplate') %>
+<div class="container is-max-desktop">
+  <h1 class="is-size-3">Register</h1>
+<form action="/register" method="POST">
+  <div class="field">
+    <label for="username" class="label">Brugernavn</label>
+    <div class="control">
+      <input type="text" class="input" id="username" name="username" required>
+      <p class="help is-danger" id="alertUsername"></p>
+      </span>
+    </div>
+  </div>
+  <div class="field">
+    <label for="email" class="label">Email</label>
+    <div class="control">
+      <input type="email" class="input" id="email" name="email" required>
+      <p class="help is-danger" id="alertEmail"></p>
+    </div>
+  </div>
+  <div class="field">
+    <label for="password" class="label">Password</label>
+    <div class="control">
+      <input type="password" class="input" id="password" name="password" required>
+      <p class="help is-danger" id="alertPassword"></p>
+    </div>
+  </div>
+  <div class="fields">
+    <div class="control">
+      <button class="button is-success" id="submit-button">Opret</button>
+    </div>
+  </div>
+</form>
+</div>

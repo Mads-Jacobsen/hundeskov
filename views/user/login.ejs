@@ -1,0 +1,20 @@
+<% layout('layout/boilerplate') %>
+<div class="container is-max-desktop">
+  <h1 class="is-size-4 mb-4">Login</h1>
+<form action="/login" method="POST">
+    <div class="field">
+        <label for="username" class="label">Brugernavn</label>
+        <div class="control">
+          <input type="text" class="input" id="username" name="username" required>
+        </div>
+      </div>
+      <div class="field">
+        <label for="password" class="label">Password</label>
+        <div class="control">
+          <input type="password" class="input" id="password" name="password" required>
+        </div>
+      </div>
+      <button class="button is-success">Login</button>
+</form>
+</div>
+

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danske hundeskove</title>
+    <link rel="stylesheet" crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <%- include('./partials/navbar') %>
+    <section class="hero has-text-white-ter is-fullheight-with-navbar">
+        <div class="hero-body">
+          <div class="container has-text-centered">
+            <p class="title">
+              Danske hundeskove
+            </p>
+            <p class="subtitle">
+              Denne side er en simpel og overskuelig side som viser hundeskove i Danmark
+            </p>
+            <div class="buttons is-centered">
+                <a href="/hundeskove"><button class="button is-info is-light is-medium is-outlined">Se oversigt</button></a>
+                <a href="/hundeskove/new"><button class="button is-success is-light is-medium is-outlined">Tilføj hundeskov</button></a>
+              </div>
+          </div>
+        </div>
+        <div class="hero-content">
+        </div>
+      </section>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<% layout('layout/boilerplate') %>
+
+<div class="d-flex align-items-center justify-content-center vh-80">
+    <div class="text-center">
+        <h1 class="display-1 fw-bold"><%= err.statusCode %></h1>
+        <p class="fs-3"> <span class="text-danger">Opps!</span> <%= err.message %></p>
+        <p class="lead">
+            <% if (process.env.NODE_ENV !== "production") { %>
+                <p><%= err.stack %></p>
+                <% } %>
+          </p>
+        <a href="./hundeskove/index.ejs" class="btn btn-primary">Gå tilbage</a>
+    </div>
+</div>

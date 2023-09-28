@@ -1,0 +1,58 @@
+<% layout('layout/boilerplate') %>
+    <div class="container">
+        <h1 class="is-size-2 has-text-centered">Redigere hundeskov</h1>
+            <form action="/hundeskove/<%= hundeskov._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+                    <div class="field">
+                      <label for="titel" class="label">Titel</label>
+                      <div class="control">
+                        <input type="text" class="input" id="titel" name="hundeskov[titel]" value="<%= hundeskov.titel %>" required>
+                        <p class="help is-danger" id="alertTitel"></p>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label for="lokation" class="label">Lokation</label>
+                      <div class="control">
+                        <input type="text" class="input" id="lokation" name="hundeskov[lokation]" value="<%= hundeskov.lokation %>" required>
+                        <p class="help is-danger" id="alertLokation"></p>
+                      </div>
+                    </div>
+                    <div class="field">
+                        <label for="beskrivelse" class="label">Beskrivelse</label>
+                        <div class="control">
+                          <textarea class="textarea" id="beskrivelse" name="hundeskov[beskrivelse]" rows="3"><%= hundeskov.beskrivelse %></textarea>
+                          <p class="help is-danger" id="alertBeskrivelse"></p>
+                        </div>
+                      </div>
+                      <div class="file is-boxed mb-3 has-name" id="billede-uploader">
+                        <label class="file-label" for="billede">
+                          <input class="file-input" type="file" id="billede" name="billede" multiple>
+                          <span class="file-cta">
+                            <span class="file-icon">
+                              <i class="fas fa-upload"></i>
+                            </span>
+                            <span class="file-label">
+                              Vælg billeder
+                            </span>
+                          </span>
+                          <span class="file-name">
+                            Ingen fil(er) valgt
+                          </span>
+                        </label>
+                      </div>
+                    <div class="field is-grouped is-grouped-multiline">
+                      <% hundeskov.billede.forEach(function(img, i) { %>
+                        <div class="control">
+                              <img src="<%= img.thumbnailSmall %>" class="image is-128x128" alt="" srcset="" id="billede-<%=i%>">
+                              <input type="checkbox" name="deleteImage[]" id="billede-<%=i%>" value="<%= img.filename %>">
+                              <label class="checkbox" for="billede-<%=i%>">Slet</label> 
+                        </div>
+                      <% }) %> 
+                    </div>
+                    <div class="control">
+                      <button type="submit" class="button is-info" id="submit-button">Opdatere</button>
+                    </div>
+            </form>
+            <a href="/hundeskove/<%= hundeskov._id %>">Gå tilbage til hundeskov</a>
+    </div>
+
+    <script src="/js/formValidation.js"></script>
