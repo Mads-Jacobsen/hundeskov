@@ -9,12 +9,3 @@
     height: 400px;
     border-radius: 10px;
 }
-
-.hero-img {
-    background-image: url(../img/hero-img.jpg) ;
-    background-position: center center;
-    background-repeat:  no-repeat;
-    background-attachment: fixed;
-    background-size:  cover;
-    background-color: #999;
-}
